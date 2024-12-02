@@ -24,21 +24,7 @@ public class ReceiptRepository {
     return database;
   }
 
-  public ReceiptResponse save(AddReceiptInput input) {
-    ReceiptResponse receipt = new ReceiptResponse();
-    receipt.setId(String.valueOf(UUID.randomUUID()));
-    receipt.setStore(input.getStore());
-    receipt.setDate(input.getDate());
-    receipt.setTotal(input.getTotal());
-    receipt.setPoints(input.getPoints());
-    receipt.setItems(input.getItems().stream().map(item -> {
-      ItemResponse itemResponse = new ItemResponse();
-      itemResponse.setId(String.valueOf(UUID.randomUUID()));
-      itemResponse.setName(item.getName());
-      itemResponse.setQuantity(item.getQuantity());
-      itemResponse.setPrice(item.getPrice());
-      return itemResponse;
-    }).toList());
+  public ReceiptResponse save(ReceiptResponse receipt) {
     database.add(receipt);
     return receipt;
   }

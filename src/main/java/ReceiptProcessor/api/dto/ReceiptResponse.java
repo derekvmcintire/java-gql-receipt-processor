@@ -20,6 +20,7 @@ public class ReceiptResponse {
   private String store;
   private String date;
   private double total;
-  private List<ItemResponse> items;
   private int points;
+  private List<ItemResponse> items;
+
 }

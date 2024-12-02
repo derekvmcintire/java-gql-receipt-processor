@@ -3,7 +3,6 @@ package ReceiptProcessor.application.utility;
 import org.springframework.stereotype.Component;
 
 import ReceiptProcessor.api.dto.AddReceiptInput;
-import ReceiptProcessor.domain.model.Receipt;
 
 // Helper functions for calculating points based on specific business rules:
 //   1. One point for every alphanumeric character in the retailer name.
