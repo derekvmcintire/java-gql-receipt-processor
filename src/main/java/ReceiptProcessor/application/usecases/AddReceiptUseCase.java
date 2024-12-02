@@ -23,7 +23,7 @@ public class AddReceiptUseCase {
 
   public ReceiptResponse execute(AddReceiptInput input) {
     // Calculate points
-    // int calculatedPoints = pointsCalculator.calculatePoints(input);
+    int calculatedPoints = pointsCalculator.calculatePoints(input);
 
     // Map AddReceiptInput to ReceiptResponse (including points)
     ReceiptResponse receipt = new ReceiptResponse();
@@ -31,7 +31,7 @@ public class AddReceiptUseCase {
     receipt.setStore(input.getStore());
     receipt.setDate(input.getDate());
     receipt.setTotal(input.getTotal());
-    receipt.setPoints(15); // Set points
+    receipt.setPoints(calculatedPoints); // Set points
     receipt.setItems(input.getItems().stream().map(item -> {
       ItemResponse itemResponse = new ItemResponse();
       itemResponse.setId(UUID.randomUUID().toString());

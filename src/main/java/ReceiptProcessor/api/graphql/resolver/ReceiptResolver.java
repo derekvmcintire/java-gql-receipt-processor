@@ -42,7 +42,8 @@ public class ReceiptResolver {
   @MutationMapping
   public ReceiptResponse addReceipt(@Argument AddReceiptInput input) {
     ReceiptResponse response = addReceiptUseCase.execute(input);
-    System.out.println("************Response points in resolver: " + response.getPoints());
+    System.out.println("************Response points in resolver: " +
+        response.getPoints());
     return response;
   }
 }

@@ -22,5 +22,4 @@ public class ReceiptResponse {
   private double total;
   private int points;
   private List<ItemResponse> items;
-
 }
