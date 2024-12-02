@@ -1,17 +1,18 @@
 type Query {
-  getReceipt(id: ID!): Receipt
-  listReceipts: [Receipt]
+  getReceipt(id: ID!): ReceiptResponse
+  listReceipts: [ReceiptResponse]
 }
 
 type Mutation {
-  addReceipt(input: AddReceiptInput!): Receipt
+  addReceipt(input: AddReceiptInput!): ReceiptResponse
 }
 
-type Receipt {
+type ReceiptResponse {
   id: ID!
   store: String!
   date: String!
   total: Float!
+  points: Int!
   items: [Item!]!
 }
 

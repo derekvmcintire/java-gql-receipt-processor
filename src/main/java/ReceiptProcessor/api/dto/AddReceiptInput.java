@@ -20,4 +20,5 @@ public class AddReceiptInput {
   private String date;
   private double total;
   private List<AddItemInput> items;
+  private int points;
 }

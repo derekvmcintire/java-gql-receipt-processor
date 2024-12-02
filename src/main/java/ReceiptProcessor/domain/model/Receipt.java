@@ -21,4 +21,7 @@ public class Receipt {
 
   @NotNull
   private Double total; // Total amount of the receipt
+
+  @NotNull
+  private int points;
 }

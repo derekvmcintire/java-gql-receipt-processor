@@ -1,13 +1,10 @@
 package ReceiptProcessor.infrastructure.repository;
 
-import ReceiptProcessor.api.dto.AddReceiptInput;
-import ReceiptProcessor.api.dto.ItemResponse;
 import ReceiptProcessor.api.dto.ReceiptResponse;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Repository
 public class ReceiptRepository {
@@ -24,20 +21,7 @@ public class ReceiptRepository {
     return database;
   }
 
-  public ReceiptResponse save(AddReceiptInput input) {
-    ReceiptResponse receipt = new ReceiptResponse();
-    receipt.setId(String.valueOf(UUID.randomUUID()));
-    receipt.setStore(input.getStore());
-    receipt.setDate(input.getDate());
-    receipt.setTotal(input.getTotal());
-    receipt.setItems(input.getItems().stream().map(item -> {
-      ItemResponse itemResponse = new ItemResponse();
-      itemResponse.setId(String.valueOf(UUID.randomUUID()));
-      itemResponse.setName(item.getName());
-      itemResponse.setQuantity(item.getQuantity());
-      itemResponse.setPrice(item.getPrice());
-      return itemResponse;
-    }).toList());
+  public ReceiptResponse save(ReceiptResponse receipt) {
     database.add(receipt);
     return receipt;
   }
