@@ -14,6 +14,12 @@ public class PointsCalculator {
   }
 
   public int calculatePoints(AddReceiptInput receipt) {
-    return rules.addPointsForRetailName(receipt);
+    return rules.addPointsForRetailName(receipt)
+        + rules.addPointsForRoundDollarTotal(receipt)
+        + rules.addPointsForMultipleOfQuarter(receipt)
+        + rules.addPointsForItemCount(receipt)
+        + rules.addPointsForItemDescriptions(receipt)
+        + rules.addPointsForOddPurchaseDate(receipt)
+        + rules.addPointsForPurchaseTime(receipt);
   }
 }
