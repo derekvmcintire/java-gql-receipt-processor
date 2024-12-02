@@ -78,11 +78,13 @@ public class ReceiptResolver {
 
   // Helper method to map a domain model (Receipt) to a DTO (ReceiptResponse)
   private ReceiptResponse mapToReceiptResponse(Receipt receipt) {
-    // Map each Item to an ItemResponse
     List<ItemResponse> itemResponses = receipt.getItems().stream()
         .map(item -> new ItemResponse(item.getName(), item.getQuantity(), item.getPrice()))
         .collect(Collectors.toList());
 
-    return new ReceiptResponse(receipt.getId(), receipt.getTotal(), itemResponses);
+    // Include store and date when mapping to ReceiptResponse
+    return new ReceiptResponse(receipt.getId(), receipt.getStore(), receipt.getDate(), receipt.getTotal(),
+        itemResponses);
   }
+
 }

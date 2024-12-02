@@ -18,6 +18,8 @@ type Mutation {
 # Receipt type representing the structure of a receipt
 type ReceiptResponse {
   id: ID!
+  store: String!
+  date: String!
   total: Float!
   items: [ItemResponse!]!
 }
