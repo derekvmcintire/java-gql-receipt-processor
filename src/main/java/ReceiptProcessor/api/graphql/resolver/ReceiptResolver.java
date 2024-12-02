@@ -4,6 +4,7 @@ import ReceiptProcessor.application.usecases.AddReceiptUseCase;
 import ReceiptProcessor.application.usecases.GetReceiptUseCase;
 import ReceiptProcessor.application.usecases.ListReceiptsUseCase;
 import ReceiptProcessor.domain.model.Receipt;
+import jakarta.annotation.PostConstruct;
 import ReceiptProcessor.domain.model.Item;
 import ReceiptProcessor.api.dto.ReceiptResponse;
 import ReceiptProcessor.api.dto.AddReceiptInput;
@@ -31,6 +32,12 @@ public class ReceiptResolver {
     this.addReceiptUseCase = addReceiptUseCase;
   }
 
+  @PostConstruct
+  public void init() {
+    // This will be printed when the resolver bean is initialized
+    System.out.println("ReceiptResolver has been initialized!");
+  }
+
   // Get receipt by ID
   @QueryMapping
   public ReceiptResponse getReceipt(String id) {
@@ -50,10 +57,11 @@ public class ReceiptResolver {
   // Add a new receipt
   @MutationMapping
   public ReceiptResponse addReceipt(AddReceiptInput addReceiptInput) {
-    System.out.println("addReceipt resolver hit");
+    System.out.println("******************addReceipt resolver hit**********************");
     try {
       // Map DTO to domain model
       Receipt receipt = mapToDomainModel(addReceiptInput);
+      System.out.println("Mapped receipt: " + receipt);
 
       // Call use case to save receipt
       Receipt savedReceipt = addReceiptUseCase.execute(receipt);

@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ReceiptProcessorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ReceiptProcessorApplication.class, args);
-	}
+		System.out.println("Starting ReceiptProcessor application...");
 
+		SpringApplication.run(ReceiptProcessorApplication.class, args);
+
+		System.out.println("ReceiptProcessor application started successfully.");
+	}
 }
