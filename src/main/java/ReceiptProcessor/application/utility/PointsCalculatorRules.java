@@ -1,14 +1,11 @@
 package ReceiptProcessor.application.utility;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Component;
 
 import ReceiptProcessor.api.dto.AddItemInput;
 import ReceiptProcessor.api.dto.AddReceiptInput;
-
-// Helper functions for calculating points based on specific business rules:
 
 @Component
 public class PointsCalculatorRules {
@@ -58,9 +55,7 @@ public class PointsCalculatorRules {
   // Rule 6: 6 points if the day in the purchase date is odd (e.g., 1st, 3rd, 5th,
   // etc.).
   public int addPointsForOddPurchaseDate(AddReceiptInput receipt) {
-    LocalDateTime date = LocalDateTime.parse(receipt.getDate());
-    int day = date.getDayOfMonth();
-    if (day % 2 == 0) {
+    if (LocalDateTime.parse(receipt.getDate()).getDayOfMonth() % 2 == 0) {
       return 6;
     }
     return 0;
@@ -69,8 +64,7 @@ public class PointsCalculatorRules {
   // Rule 7: 10 points if the purchase time is between 2:00 PM and 4:00 PM
   // (inclusive).
   public int addPointsForPurchaseTime(AddReceiptInput receipt) {
-    LocalDateTime date = LocalDateTime.parse(receipt.getDate());
-    int hour = date.getHour();
+    int hour = LocalDateTime.parse(receipt.getDate()).getHour();
     if (hour >= 14 && hour <= 16) {
       return 10;
     }
