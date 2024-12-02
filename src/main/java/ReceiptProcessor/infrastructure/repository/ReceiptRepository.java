@@ -7,11 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class ReceiptRepository {
   private final List<ReceiptResponse> database = new ArrayList<>();
-  private int idCounter = 1;
 
   public ReceiptResponse findById(String id) {
     return database.stream()
@@ -26,13 +26,13 @@ public class ReceiptRepository {
 
   public ReceiptResponse save(AddReceiptInput input) {
     ReceiptResponse receipt = new ReceiptResponse();
-    receipt.setId(String.valueOf(idCounter++));
+    receipt.setId(String.valueOf(UUID.randomUUID()));
     receipt.setStore(input.getStore());
     receipt.setDate(input.getDate());
     receipt.setTotal(input.getTotal());
     receipt.setItems(input.getItems().stream().map(item -> {
       ItemResponse itemResponse = new ItemResponse();
-      itemResponse.setId(String.valueOf(idCounter++));
+      itemResponse.setId(String.valueOf(UUID.randomUUID()));
       itemResponse.setName(item.getName());
       itemResponse.setQuantity(item.getQuantity());
       itemResponse.setPrice(item.getPrice());
