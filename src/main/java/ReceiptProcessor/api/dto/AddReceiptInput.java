@@ -2,12 +2,22 @@ package ReceiptProcessor.api.dto;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
 public class AddReceiptInput {
 
+  @NotNull
   private String store;
+
+  @NotNull
   private String date;
+
+  @NotNull
   private Double total;
-  private List<ItemInput> items;
+
+  @NotNull
+  private List<@Valid ItemInput> items;
 
   // Constructor
   public AddReceiptInput(String store, String date, Double total, List<ItemInput> items) {

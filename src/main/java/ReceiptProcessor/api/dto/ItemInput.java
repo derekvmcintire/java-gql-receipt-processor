@@ -1,11 +1,18 @@
 package ReceiptProcessor.api.dto;
 
+import jakarta.validation.constraints.NotNull;
+
 // Represents an item in the receipt
 public class ItemInput {
 
-  private String name; // Name of the item (e.g., "Milk")
-  private Integer quantity; // Quantity of the item (e.g., 2)
-  private Double price; // Price per unit of the item (e.g., 2.5)
+  @NotNull
+  private String name;
+
+  @NotNull
+  private Integer quantity;
+
+  @NotNull
+  private Double price;
 
   // Constructor
   public ItemInput(String name, Integer quantity, Double price) {

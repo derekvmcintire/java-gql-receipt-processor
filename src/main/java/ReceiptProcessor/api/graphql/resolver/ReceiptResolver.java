@@ -5,19 +5,23 @@ import ReceiptProcessor.application.usecases.GetReceiptUseCase;
 import ReceiptProcessor.application.usecases.ListReceiptsUseCase;
 import ReceiptProcessor.domain.model.Receipt;
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import ReceiptProcessor.domain.model.Item;
 import ReceiptProcessor.api.dto.ReceiptResponse;
 import ReceiptProcessor.api.dto.AddReceiptInput;
 import ReceiptProcessor.api.dto.ItemResponse;
 
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@Validated
 public class ReceiptResolver {
 
   private final GetReceiptUseCase getReceiptUseCase;
@@ -55,12 +59,12 @@ public class ReceiptResolver {
   }
 
   // Add a new receipt
-  @MutationMapping
-  public ReceiptResponse addReceipt(AddReceiptInput addReceiptInput) {
+  @MutationMapping(name = "addReceipt")
+  public ReceiptResponse addReceipt(@Valid @Argument("input") AddReceiptInput input) {
     System.out.println("******************addReceipt resolver hit**********************");
     try {
       // Map DTO to domain model
-      Receipt receipt = mapToDomainModel(addReceiptInput);
+      Receipt receipt = mapToDomainModel(input);
       System.out.println("Mapped receipt: " + receipt);
 
       // Call use case to save receipt
@@ -69,7 +73,7 @@ public class ReceiptResolver {
       // Return the saved receipt as a DTO
       return mapToReceiptResponse(savedReceipt);
     } catch (Exception e) {
-      // You can log the exception and return a meaningful error response
+      // Log the exception and return a meaningful error response
       throw new RuntimeException("Error while adding receipt: " + e.getMessage());
     }
   }

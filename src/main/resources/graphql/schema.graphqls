@@ -17,7 +17,7 @@ type Mutation {
 
 # Receipt type representing the structure of a receipt
 type ReceiptResponse {
-  id: ID!
+  id: ID
   store: String!
   date: String!
   total: Float!
@@ -26,7 +26,7 @@ type ReceiptResponse {
 
 # Item type representing individual items in a receipt
 type ItemResponse {
-  id: ID!
+  id: ID
   name: String!
   quantity: Int!
   price: Float!
