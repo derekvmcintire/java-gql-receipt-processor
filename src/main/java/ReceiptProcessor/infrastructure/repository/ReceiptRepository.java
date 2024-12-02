@@ -30,6 +30,7 @@ public class ReceiptRepository {
     receipt.setStore(input.getStore());
     receipt.setDate(input.getDate());
     receipt.setTotal(input.getTotal());
+    receipt.setPoints(input.getPoints());
     receipt.setItems(input.getItems().stream().map(item -> {
       ItemResponse itemResponse = new ItemResponse();
       itemResponse.setId(String.valueOf(UUID.randomUUID()));
