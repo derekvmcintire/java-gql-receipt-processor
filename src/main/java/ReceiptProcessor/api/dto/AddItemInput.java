@@ -2,29 +2,23 @@ package ReceiptProcessor.api.dto;
 
 import java.util.Objects;
 
-public class ItemResponse {
-  private String id;
+public class AddItemInput {
   private String name;
   private int quantity;
   private double price;
 
   // Default constructor
-  public ItemResponse() {
+  public AddItemInput() {
   }
 
   // Parameterized constructor
-  public ItemResponse(String id, String name, int quantity, double price) {
-    this.id = id;
+  public AddItemInput(String name, int quantity, double price) {
     this.name = name;
     this.quantity = quantity;
     this.price = price;
   }
 
   // Getters
-  public String getId() {
-    return id;
-  }
-
   public String getName() {
     return name;
   }
@@ -38,10 +32,6 @@ public class ItemResponse {
   }
 
   // Setters
-  public void setId(String id) {
-    this.id = id;
-  }
-
   public void setName(String name) {
     this.name = name;
   }
@@ -57,9 +47,8 @@ public class ItemResponse {
   // toString method for debugging
   @Override
   public String toString() {
-    return "ItemResponse{" +
-        "id='" + id + '\'' +
-        ", name='" + name + '\'' +
+    return "AddItemInput{" +
+        "name='" + name + '\'' +
         ", quantity=" + quantity +
         ", price=" + price +
         '}';
@@ -72,15 +61,14 @@ public class ItemResponse {
       return true;
     if (o == null || getClass() != o.getClass())
       return false;
-    ItemResponse that = (ItemResponse) o;
+    AddItemInput that = (AddItemInput) o;
     return quantity == that.quantity &&
         Double.compare(that.price, price) == 0 &&
-        Objects.equals(id, that.id) &&
         Objects.equals(name, that.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, quantity, price);
+    return Objects.hash(name, quantity, price);
   }
 }
