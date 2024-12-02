@@ -1,0 +1,46 @@
+# Schema for Receipt GraphQL API
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+# Query type for fetching data
+type Query {
+  getReceipt(id: ID!): ReceiptResponse
+  listReceipts: [ReceiptResponse!]!
+}
+
+# Mutation type for modifying data
+type Mutation {
+  addReceipt(input: AddReceiptInput!): ReceiptResponse
+}
+
+# Receipt type representing the structure of a receipt
+type ReceiptResponse {
+  id: ID!
+  total: Float!
+  items: [ItemResponse!]!
+}
+
+# Item type representing individual items in a receipt
+type ItemResponse {
+  id: ID!
+  name: String!
+  quantity: Int!
+  price: Float!
+}
+
+# Input type for adding a receipt
+input AddReceiptInput {
+  store: String!
+  date: String!
+  total: Float!
+  items: [ItemInput!]!
+}
+
+# Input type for adding items to a receipt
+input ItemInput {
+  name: String!
+  quantity: Int!
+  price: Float!
+}

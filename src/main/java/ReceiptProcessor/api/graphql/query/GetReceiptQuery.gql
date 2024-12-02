@@ -1,0 +1,12 @@
+query GetReceipt {
+  getReceipt(id: "12345") {
+    id
+    total
+    items {
+      id
+      name
+      quantity
+      price
+    }
+  }
+}

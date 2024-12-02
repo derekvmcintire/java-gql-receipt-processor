@@ -1,0 +1,12 @@
+query ListReceipts {
+  listReceipts {
+    id
+    total
+    items {
+      id
+      name
+      quantity
+      price
+    }
+  }
+}
