@@ -5,6 +5,7 @@ import ReceiptProcessor.api.dto.ItemResponse;
 import ReceiptProcessor.api.dto.ReceiptResponse;
 import ReceiptProcessor.application.utility.PointsCalculator;
 import ReceiptProcessor.infrastructure.repository.ReceiptMemcachedRepository;
+import ReceiptProcessor.infrastructure.repository.ReceiptRepository;
 
 import java.util.UUID;
 
@@ -14,10 +15,13 @@ import org.springframework.stereotype.Component;
 public class AddReceiptUseCase {
 
   private final ReceiptMemcachedRepository receiptMemcachedRepository;
+  private final ReceiptRepository receiptRepository;
   private final PointsCalculator pointsCalculator;
 
-  public AddReceiptUseCase(ReceiptMemcachedRepository receiptMemcachedRepository, PointsCalculator pointsCalculator) {
+  public AddReceiptUseCase(ReceiptMemcachedRepository receiptMemcachedRepository, ReceiptRepository receiptRepository,
+      PointsCalculator pointsCalculator) {
     this.receiptMemcachedRepository = receiptMemcachedRepository;
+    this.receiptRepository = receiptRepository;
     this.pointsCalculator = pointsCalculator;
   }
 
@@ -42,8 +46,11 @@ public class AddReceiptUseCase {
     }).toList());
 
     // Save the receipt
-    ReceiptResponse cacheResult = receiptMemcachedRepository.saveToCache(receipt);
+    ReceiptResponse result = receiptRepository.save(receipt);
 
-    return cacheResult;
+    // Save points in memcache
+    receiptMemcachedRepository.saveToCache(receipt);
+
+    return result;
   }
 }
