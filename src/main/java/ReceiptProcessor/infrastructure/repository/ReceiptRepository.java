@@ -14,10 +14,10 @@ public class ReceiptRepository {
 
   // Simulates a database using an in-memory list to store ReceiptResponse
   // objects.
-  private final List<ReceiptResponse> database = new ArrayList<>();
+  private final List<ReceiptResponse> store = new ArrayList<>();
 
   /**
-   * Finds a receipt in the database by its unique ID.
+   * Finds a receipt in the store by its unique ID.
    * 
    * @param id The ID of the receipt to find.
    * @return The matching ReceiptResponse if found; otherwise, null.
@@ -25,31 +25,31 @@ public class ReceiptRepository {
   public ReceiptResponse findById(String id) {
     // Streams through the list to locate a receipt with the given ID.
     // Returns the first match or null if no match is found.
-    return database.stream()
+    return store.stream()
         .filter(receipt -> receipt.getId().equals(id)) // Filters receipts by ID.
         .findFirst() // Gets the first matching receipt (if any).
         .orElse(null); // Returns null if no match is found.
   }
 
   /**
-   * Retrieves all receipts stored in the database.
+   * Retrieves all receipts stored in the store.
    * 
    * @return A list of all ReceiptResponse objects.
    */
   public List<ReceiptResponse> findAll() {
     // Returns the entire in-memory list of receipts.
-    return database;
+    return store;
   }
 
   /**
-   * Saves a new receipt to the database.
+   * Saves a new receipt to the store.
    * 
    * @param receipt The ReceiptResponse object to save.
    * @return The saved ReceiptResponse object.
    */
   public ReceiptResponse save(ReceiptResponse receipt) {
-    // Adds the new receipt to the in-memory database.
-    database.add(receipt);
+    // Adds the new receipt to the in-memory store.
+    store.add(receipt);
     // Returns the saved receipt object.
     return receipt;
   }
