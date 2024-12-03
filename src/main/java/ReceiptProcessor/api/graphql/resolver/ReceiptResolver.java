@@ -3,6 +3,7 @@ package ReceiptProcessor.api.graphql.resolver;
 import ReceiptProcessor.api.dto.AddReceiptInput;
 import ReceiptProcessor.api.dto.ReceiptResponse;
 import ReceiptProcessor.application.usecases.AddReceiptUseCase;
+import ReceiptProcessor.application.usecases.GetReceiptPointsUseCase;
 import ReceiptProcessor.application.usecases.GetReceiptUseCase;
 import ReceiptProcessor.application.usecases.ListReceiptsUseCase;
 
@@ -17,14 +18,17 @@ import java.util.List;
 public class ReceiptResolver {
 
   private final GetReceiptUseCase getReceiptUseCase;
+  private final GetReceiptPointsUseCase getReceiptPointsUseCase;
   private final ListReceiptsUseCase listReceiptsUseCase;
   private final AddReceiptUseCase addReceiptUseCase;
 
   public ReceiptResolver(
       GetReceiptUseCase getReceiptUseCase,
+      GetReceiptPointsUseCase getReceiptPointsUseCase,
       ListReceiptsUseCase listReceiptsUseCase,
       AddReceiptUseCase addReceiptUseCase) {
     this.getReceiptUseCase = getReceiptUseCase;
+    this.getReceiptPointsUseCase = getReceiptPointsUseCase;
     this.listReceiptsUseCase = listReceiptsUseCase;
     this.addReceiptUseCase = addReceiptUseCase;
   }
@@ -32,6 +36,11 @@ public class ReceiptResolver {
   @QueryMapping
   public ReceiptResponse getReceipt(@Argument String id) {
     return getReceiptUseCase.execute(id);
+  }
+
+  @QueryMapping
+  public int getPoints(@Argument String id) {
+    return getReceiptPointsUseCase.execute(id);
   }
 
   @QueryMapping

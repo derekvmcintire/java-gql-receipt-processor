@@ -1,6 +1,7 @@
 type Query {
   getReceipt(id: ID!): ReceiptResponse
   listReceipts: [ReceiptResponse]
+  getPoints(id: ID!): Int
 }
 
 type Mutation {

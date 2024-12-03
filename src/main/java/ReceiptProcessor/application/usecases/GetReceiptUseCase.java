@@ -1,19 +1,19 @@
 package ReceiptProcessor.application.usecases;
 
 import ReceiptProcessor.api.dto.ReceiptResponse;
-import ReceiptProcessor.infrastructure.repository.ReceiptMemcachedRepository;
+import ReceiptProcessor.infrastructure.repository.ReceiptRepository;
 import org.springframework.stereotype.Component;
 
 @Component
 public class GetReceiptUseCase {
 
-  private final ReceiptMemcachedRepository receiptMemcachedRepository;
+  private final ReceiptRepository receiptRepository;
 
-  public GetReceiptUseCase(ReceiptMemcachedRepository receiptMemcachedRepository) {
-    this.receiptMemcachedRepository = receiptMemcachedRepository;
+  public GetReceiptUseCase(ReceiptRepository receiptRepository) {
+    this.receiptRepository = receiptRepository;
   }
 
   public ReceiptResponse execute(String id) {
-    return receiptMemcachedRepository.findInCache(id);
+    return receiptRepository.findById(id);
   }
 }
