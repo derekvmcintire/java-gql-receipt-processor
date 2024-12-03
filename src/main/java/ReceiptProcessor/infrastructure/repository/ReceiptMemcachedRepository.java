@@ -22,17 +22,17 @@ public class ReceiptMemcachedRepository {
    * @param receipt The receipt to save.
    * @return The saved receipt.
    */
-  public ReceiptResponse saveToCache(ReceiptResponse receipt) {
+  public Integer saveToCache(ReceiptResponse receipt) {
     // Create a cache key using the receipt ID
     String cacheKey = "receipt-" + receipt.getId();
+    Integer points = receipt.getPoints();
 
     // Get the cache from CacheManager and save the receipt into Memcached
-    Cache cache = cacheManager.getCache("receipt"); // "default" is the cache name from your config
+    Cache cache = cacheManager.getCache("receipt");
     if (cache != null) {
-      System.out.println("*********** Saving to cache with key: " + cacheKey);
-      cache.put(cacheKey, receipt.getPoints());
+      cache.put(cacheKey, points);
     }
-    return receipt;
+    return points;
   }
 
   /**
