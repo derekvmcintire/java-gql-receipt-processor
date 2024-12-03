@@ -1,11 +1,16 @@
 type Query {
   getReceipt(id: ID!): ReceiptResponse
   listReceipts: [ReceiptResponse]
-  getPoints(id: ID!): Int
+  getPoints(id: ID!): ReceiptPointsResponse
 }
 
 type Mutation {
   addReceipt(input: AddReceiptInput!): ReceiptResponse
+}
+
+type ReceiptPointsResponse {
+  id: ID!
+  points: Int!
 }
 
 type ReceiptResponse {

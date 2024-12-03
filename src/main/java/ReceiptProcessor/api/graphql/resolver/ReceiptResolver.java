@@ -1,6 +1,7 @@
 package ReceiptProcessor.api.graphql.resolver;
 
 import ReceiptProcessor.api.dto.AddReceiptInput;
+import ReceiptProcessor.api.dto.ReceiptPointsResponse;
 import ReceiptProcessor.api.dto.ReceiptResponse;
 import ReceiptProcessor.application.usecases.AddReceiptUseCase;
 import ReceiptProcessor.application.usecases.GetReceiptPointsUseCase;
@@ -39,7 +40,7 @@ public class ReceiptResolver {
   }
 
   @QueryMapping
-  public int getPoints(@Argument String id) {
+  public ReceiptPointsResponse getPoints(@Argument String id) {
     return getReceiptPointsUseCase.execute(id);
   }
 
