@@ -5,3 +5,6 @@ run:
 
 build:
 	./mvnw clean install
+
+test:
+	./mvnw test

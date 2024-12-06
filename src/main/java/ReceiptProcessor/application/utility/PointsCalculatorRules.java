@@ -55,7 +55,7 @@ public class PointsCalculatorRules {
   // Rule 6: 6 points if the day in the purchase date is odd (e.g., 1st, 3rd, 5th,
   // etc.).
   public int addPointsForOddPurchaseDate(AddReceiptInput receipt) {
-    if (LocalDateTime.parse(receipt.getDate()).getDayOfMonth() % 2 == 0) {
+    if (LocalDateTime.parse(receipt.getDate()).getDayOfMonth() % 2 != 0) {
       return 6;
     }
     return 0;
