@@ -48,7 +48,6 @@ public class PointsCalculator {
    * @return The total points calculated based on the rules.
    */
   public int calculatePoints(AddReceiptInput receipt) {
-    System.out.println("************ rules: " + ruleRegistry.getRules());
     return ruleRegistry.getRules() // Retrieves the list of rules from RuleRegistry.
         .stream() // Converts the list to a Stream to apply operations on each rule.
         .mapToInt(rule -> rule.calculate(receipt)) // For each rule, apply the calculate method and get the result
