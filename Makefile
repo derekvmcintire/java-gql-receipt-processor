@@ -8,3 +8,9 @@ build:
 
 test:
 	./mvnw test
+
+startmem:
+	brew services start memcached
+
+stopmem:
+	brew services stop memcached
