@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import ReceiptProcessor.api.dto.AddReceiptInput;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.List;
@@ -17,9 +16,6 @@ class PointsCalculatorTest {
   private PointsCalculator pointsCalculator;
   private RuleRegistry mockRuleRegistry;
 
-  @Mock
-  private List<Rule> mockRules;
-
   private AddReceiptInput receipt;
 
   @BeforeEach
@@ -29,9 +25,6 @@ class PointsCalculatorTest {
 
     // Create a mock RuleRegistry
     mockRuleRegistry = mock(RuleRegistry.class);
-
-    // Configure the mock RuleRegistry to return the mocked list of rules
-    when(mockRuleRegistry.getRules()).thenReturn(mockRules);
 
     // Initialize PointsCalculator with the mock RuleRegistry
     pointsCalculator = new PointsCalculator(mockRuleRegistry);
@@ -48,7 +41,10 @@ class PointsCalculatorTest {
     Rule mockRule3 = mock(Rule.class);
 
     // Configure the mocked rules list to return specific rules
-    when(mockRules.iterator()).thenReturn(Arrays.asList(mockRule1, mockRule2, mockRule3).iterator());
+    List<Rule> rules = Arrays.asList(mockRule1, mockRule2, mockRule3);
+
+    // Configure the mock RuleRegistry to return the list of rules
+    when(mockRuleRegistry.getRules()).thenReturn(rules);
 
     // Set up the behavior for the individual rules
     when(mockRule1.calculate(receipt)).thenReturn(10);
