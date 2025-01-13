@@ -6,15 +6,26 @@ The **ReceiptProcessor** API is a Java-based Spring Boot (demo) application that
 
 ---
 
-## Prerequisites
+### Prerequisites
 
 Before setting up and running the project, ensure you have the following installed:
 
-- **Java 17** (or later)
-- **Maven** (for building the project)
-- **Memcached** (for caching)
+1. **Java 17 (or later)**  
+   Required for building and running the project.
 
----
+2. **Maven (Optional)**  
+   Maven is typically used for building the project. However, if you do not wish to install Maven, the project includes a wrapper script (`mvnw`) that can be used instead.  
+
+   - **To use Maven wrapper**: Run `./mvnw` (Linux/macOS) or `mvnw.cmd` (Windows) for all Maven-related commands.  
+   - Example:  
+     ```bash
+     ./mvnw clean install
+     ```
+
+3. **Memcached**  
+   Memcached is required for caching. Ensure it is installed and running on your machine.  
+
+--- 
 
 ## Dependencies
 
